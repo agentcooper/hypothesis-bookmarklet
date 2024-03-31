@@ -1,13 +1,16 @@
-const specialCharacters = ['%', '"', '<', '>', '#', '@', ' ', '\\&', '\\?'];
+const specialCharacters = ["%", '"', "<", ">", "#", "@", " ", "\\&", "\\?"];
 
 function urlencode(code: string) {
-	return code.replace(new RegExp(specialCharacters.join('|'), 'g'), encodeURIComponent);
+  return code.replace(
+    new RegExp(specialCharacters.join("|"), "g"),
+    encodeURIComponent
+  );
 }
 
 function prefix(code: string) {
-	return `javascript:${code}`;
+  return `javascript:${code}`;
 }
 
 export function createBookmarklet(code: string) {
-	return prefix(urlencode(`(function() { ${code} })()`));
+  return prefix(urlencode(`(function() { ${code} })()`));
 }
