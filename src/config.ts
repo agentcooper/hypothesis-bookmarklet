@@ -10,7 +10,7 @@ function init(code: string) {
 		localStorage.setItem('username', username);
 		localStorage.setItem('token', token);
 
-		const finalScript = code.replaceAll('%USERNAME%', username).replaceAll('%TOKEN%', token);
+		const finalScript = code.replaceAll('__USERNAME__', username).replaceAll('__TOKEN__', token);
 		const javascriptURL = createBookmarklet(finalScript);
 
 		document.querySelector<HTMLInputElement>('#output')!.value = javascriptURL;

@@ -1,12 +1,12 @@
 const BASE_URL = `https://api.hypothes.is/api`;
 
-const username = '%USERNAME%';
-const token = '%TOKEN%';
+const username = '__USERNAME__';
+const token = '__TOKEN__';
 
-if (username.startsWith("%")) {
+if (username.startsWith("__")) {
 	window.alert("Error: bookmarklet is not configured, 'username' is not set.");
 }
-if (token.startsWith("%")) {
+if (token.startsWith("__")) {
 	window.alert("Error: bookmarklet is not configured, 'token' is not set.");
 }
 
