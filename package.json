@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "npm run build-web && npm run build-library",
-		"build-web": "vite build",
+		"build-web": "vite build --base=/hypothesis-bookmarklet/",
 		"build-library": "vite build --config vite-library.config.js",
 		"preview": "vite preview",
 		"copy-bookmarklet": "npm run build && node scripts/copy-bookmarklet.mjs | pbcopy"
