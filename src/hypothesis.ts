@@ -59,6 +59,9 @@ export async function createAnnotation(text: string) {
           ],
         },
       ],
+      permissions: {
+        read: ["group:__world__"],
+      },
     }),
   });
 
