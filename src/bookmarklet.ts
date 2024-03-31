@@ -2,13 +2,13 @@ import { AnnotationManager, BaseAnnotation } from "./AnnotationManager";
 import * as Hypothesis from "./hypothesis";
 
 interface Annotation extends BaseAnnotation {
-  note: string;
+  note?: string;
 }
 
 const annotationManager = new AnnotationManager<Annotation>({
   onClick: (annotation) => {
     const result = window.prompt(
-      `Note "${annotation.exact.slice(0, 10)}..." (${annotation.id})`,
+      `Note "${annotation.exact.slice(0, 15)}..."`,
       annotation.note
     );
     if (result !== null && result !== annotation.exact) {
@@ -26,12 +26,16 @@ const annotationManager = new AnnotationManager<Annotation>({
 async function run() {
   const annotation = AnnotationManager.createAnnotationFromSelection();
   if (annotation) {
-    annotationManager.addAnnotation({ ...annotation, note: "" });
-    await Hypothesis.createAnnotation(annotation.exact);
+    annotationManager.addAnnotation(annotation);
+    const createdAnnotation = await Hypothesis.createAnnotation(
+      annotation.exact
+    );
+    annotation.id = createdAnnotation.id;
   }
 
   const hypothesisAnnotations = await Hypothesis.fetchAnnotations();
-  annotationManager.setAnnotations(
+  console.log("Fetched annotations", hypothesisAnnotations);
+  annotationManager.addAnnotations(
     hypothesisAnnotations.map((annotation) => {
       return {
         id: annotation.id,

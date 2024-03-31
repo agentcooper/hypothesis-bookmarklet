@@ -47,9 +47,18 @@ export class AnnotationManager<Annotation extends BaseAnnotation> {
     };
   }
 
+  public exists(annotationId: string): boolean {
+    return CSS.highlights.has(this.getKey({ id: annotationId }));
+  }
+
   public addAnnotation(annotation: Annotation): void {
+    if (this.exists(annotation.id)) {
+      return;
+    }
+
     const range = this.findRangeFromText(annotation.exact);
     if (!range) {
+      console.error(`Can't find the range for text: '${annotation.exact}'`);
       return;
     }
     const highlight = new Highlight(range);
@@ -63,6 +72,7 @@ export class AnnotationManager<Annotation extends BaseAnnotation> {
         color: white;
       }`
     );
+    console.log(`Added annotation`, annotation);
   }
 
   public removeAnnotation(annotation: Annotation): void {
@@ -71,11 +81,15 @@ export class AnnotationManager<Annotation extends BaseAnnotation> {
     this.removeStyle(key);
   }
 
-  public setAnnotations(annotations: Annotation[]): void {
-    this.removeAnnotations();
+  public addAnnotations(annotations: Annotation[]): void {
     for (const annotation of annotations) {
       this.addAnnotation(annotation);
     }
+  }
+
+  public setAnnotations(annotations: Annotation[]): void {
+    this.removeAnnotations();
+    this.addAnnotations(annotations);
   }
 
   public removeAnnotations(): void {
@@ -138,7 +152,7 @@ export class AnnotationManager<Annotation extends BaseAnnotation> {
     document.getElementById(`style-${id}`)?.remove();
   }
 
-  private getKey(annotation: Annotation): string {
-    return annotation.id;
+  private getKey(annotation: { id: string }): string {
+    return `annotation-${annotation.id}`;
   }
 }
