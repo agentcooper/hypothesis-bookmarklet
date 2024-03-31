@@ -26,7 +26,7 @@ function init(code: string) {
 	}
 }
 
-fetch('/lib/annotator.umd.cjs')
+fetch('./lib/annotator.umd.cjs')
 	.then((res) => res.text())
 	.then((text) => {
 		init(text);
