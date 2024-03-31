@@ -1,0 +1,22 @@
+{
+	"name": "annotation-manager",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "npm run build-web && npm run build-library",
+		"build-web": "vite build",
+		"build-library": "vite build --config vite-library.config.js",
+		"preview": "vite preview",
+		"copy-bookmarklet": "npm run build && node scripts/copy-bookmarklet.mjs | pbcopy"
+	},
+	"devDependencies": {
+		"vite": "^5.2.0",
+		"typescript": "^5.4.3"
+	},
+	"dependencies": {
+		"dom-anchor-text-position": "^5.0.0",
+		"dom-anchor-text-quote": "^4.0.2"
+	}
+}

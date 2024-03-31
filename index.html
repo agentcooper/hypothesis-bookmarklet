@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+		<title>Annotate</title>
+		<style>
+			body {
+				padding: 1em;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+					'Segoe UI Emoji', 'Segoe UI Symbol';
+			}
+
+			input,
+			textarea {
+				margin-top: 1em;
+			}
+
+			textarea {
+				width: 20rem;
+				height: 10rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Bookmarklet generator</h1>
+
+		<p>Bookmarklet allows to create and view existing annotations without login windows. Works in iOS Safari.</p>
+
+		<a href="https://hypothes.is/account/developer">Get Hypothesis API token</a>
+
+		<h2>Input</h2>
+
+		<div>
+			<label for="username">Username</label>
+			<input type="text" id="username" placeholder="agentcooper" size="20" />
+		</div>
+
+		<div>
+			<label for="token">Token</label>
+			<input type="text" id="token" placeholder="n1DHVck..." size="30" />
+		</div>
+
+		<h2>Output</h2>
+
+		<p>Drag to the bookmarks toolbar: <a href="" id="bookmarklet">Annotate</a></p>
+
+		<div>Or copy the JavaScript URL:</div>
+		<textarea id="output" onclick="this.select();"></textarea>
+
+		<script src="src/config.ts" type="module"></script>
+	</body>
+</html>
