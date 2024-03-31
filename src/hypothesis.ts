@@ -3,6 +3,13 @@ const BASE_URL = `https://api.hypothes.is/api`;
 const username = '%USERNAME%';
 const token = '%TOKEN%';
 
+if (username.startsWith("%")) {
+	window.alert("Error: bookmarklet is not configured, 'username' is not set.");
+}
+if (token.startsWith("%")) {
+	window.alert("Error: bookmarklet is not configured, 'token' is not set.");
+}
+
 const commonHeaders = {
 	Accept: 'application/json',
 	'Content-Type': 'application/json',
