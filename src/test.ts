@@ -2,7 +2,7 @@ import { AnnotationManager } from "./AnnotationManager";
 
 const annotationManager = new AnnotationManager({
   onClick: (annotation) => {
-    console.log("click", annotation);
+    alert(JSON.stringify(annotation, null, 2));
   },
 });
 
